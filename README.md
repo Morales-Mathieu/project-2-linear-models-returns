@@ -1,72 +1,74 @@
 # Project 2 — Linear Models for Next-Day Return Prediction
 
-This repository investigates whether **linear models** can predict **next-day log returns** using only information available at time *t*, and evaluates performance using a **strict walk-forward (out-of-sample) backtest**.
+This repository investigates whether **linear models** can predict **next-day log returns** using only information available at time t, and evaluates performance using a **strict walk-forward (out-of-sample) backtest**.
 
-**Rendered report (HTML):**  
-https://morales-mathieu.github.io/project-2-linear-models-returns/docs/linear-models-returns.html
+Rendered report (HTML):  
+https://morales-mathieu.github.io/project-2-linear-models-returns/linear-models-returns.html
 
 ---
 
 ## Overview
 
-**Goal**  
-Predict the next-day log return:
-$$
-y_{t+1} = \log(P_{t+1}) - \log(P_t)
-$$
+### Goal
+Predict the next-day log return defined as:
 
-**Models**
+    y(t+1) = log(P(t+1)) − log(P(t))
+
+### Models
 - OLS (statsmodels)
-- Ridge, Lasso, Elastic Net (scikit-learn)
+- Ridge regression
+- Lasso regression
+- Elastic Net regression
 
-**Baselines**
+### Baselines
 - Zero return baseline
 - Last return baseline
 
-**Metrics**
+### Metrics
 - RMSE
 - MAE
 - Directional accuracy (sign prediction)
 
-**Validation**
-- Time-series **walk-forward backtest** (no shuffling, no leakage): train on the past, test on the next period, aggregate results across folds.
+### Validation
+- Time-series **walk-forward backtesting**
+- Train on past data only, test on the next period
+- No random shuffling, no data leakage
 
 ---
 
 ## Methodology
 
 ### Target
-- Next-day log return (shifted by one day).
+- Next-day log return (shifted by one trading day).
 
-### Features (available at time *t*)
+### Features (available at time t)
 - Lagged returns
 - Rolling volatility
 - Momentum / trend proxies
-- Optional market proxy features (when enabled)
+- Optional market proxy features
 
-All features are engineered to avoid using any future information.
+All features are engineered using only information available at time t.
 
 ---
 
 ## Repository structure
 
 ├── data/
-│ ├── raw/
-│ └── processed/
+│   ├── raw/
+│   └── processed/
 ├── docs/
-│ └── linear-models-returns.html
+│   └── linear-models-returns.html
 ├── notebooks/
-│ └── linear-models-returns.ipynb
+│   └── linear-models-returns.ipynb
 ├── reports/
-│ ├── figures/
-│ └── tables/
+│   ├── figures/
+│   └── tables/
 ├── src/
-│ ├── feature_eng.py
-│ ├── metrics.py
-│ └── run.py
+│   ├── feature_eng.py
+│   ├── metrics.py
+│   └── run.py
 ├── requirements.txt
 └── README.md
-
 
 
 - `docs/` contains the HTML report served via GitHub Pages.
