@@ -3,7 +3,7 @@
 This repository investigates whether **linear models** can predict **next-day log returns** using only information available at time *t*, and evaluates performance using a **strict walk-forward (out-of-sample) backtest**.
 
 **Rendered report (HTML):**  
-https://morales-mathieu.github.io/project-2-linear-models-returns/linear-models-returns.html
+https://morales-mathieu.github.io/project-2-linear-models-returns/docs/linear-models-returns.html
 
 ---
 
@@ -11,9 +11,9 @@ https://morales-mathieu.github.io/project-2-linear-models-returns/linear-models-
 
 **Goal**  
 Predict the next-day log return:
-\[
+$$
 y_{t+1} = \log(P_{t+1}) - \log(P_t)
-\]
+$$
 
 **Models**
 - OLS (statsmodels)
